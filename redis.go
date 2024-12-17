@@ -11,7 +11,7 @@ import (
 type redisStoreType struct {
 	rate       int64
 	limit      uint
-	client     *redis.Client
+	client     redis.UniversalClient
 	ctx        context.Context
 	panicOnErr bool
 	skip       func(c *gin.Context) bool
@@ -97,7 +97,7 @@ type RedisOptions struct {
 	Rate time.Duration
 	// the amount of requests that can be made every Rate
 	Limit       uint
-	RedisClient *redis.Client
+	RedisClient redis.UniversalClient
 	// should gin-rate-limit panic when there is an error with redis
 	PanicOnErr bool
 	// a function that returns true if the request should not count toward the rate limit
